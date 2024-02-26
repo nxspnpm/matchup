@@ -23,6 +23,13 @@ class _LoginState extends State<Login> {
     prefs = await SharedPreferences.getInstance();
   }
 
+  String? validateUsername(value) {
+    if (value.isEmpty) {
+      return 'Enter your name';
+    }
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,68 +50,89 @@ class _LoginState extends State<Login> {
                 SizedBox(
                   height: 180,
                 ),
-                TextFormField(
-                  controller: userName,
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Colors.white38,
-                    hintText: 'Your Username',
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(25.0),
-                      borderSide: BorderSide(color: Colors.deepPurple),
+                Padding(
+                  padding: const EdgeInsets.only(right: 40, left: 40),
+                  child: TextFormField(
+                    controller: userName,
+                    textAlign: TextAlign.center,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white38,
+                      hintText: 'Your Username',
+                      prefixIcon: Icon(Icons.face),
+                      prefixIconColor: Colors.white,
+                      hintStyle: TextStyle(
+                        fontSize: 16.0,
+                        color: Colors.white,
+                        fontWeight: FontWeight.normal,
+                        fontStyle: FontStyle.normal,
+                        letterSpacing: 2,
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(25.0),
+                        borderSide: BorderSide(color: Colors.white),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                        borderRadius: BorderRadius.circular(25.0),
+                      ),
+                      errorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                        borderRadius: BorderRadius.circular(25.0),
+                      ),
+                      contentPadding: EdgeInsets.symmetric(
+                          vertical: 15.0, horizontal: 20.0),
                     ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white),
-                      borderRadius: BorderRadius.circular(25.0),
-                    ),
-                    contentPadding:
-                        EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0),
+                    validator: validateUsername,
                   ),
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: 40),
                 ElevatedButton(
                   onPressed: () async {
-                    //map แล้วแทนค่าใส่ใน profile
-                    final Map<String, dynamic> profile = {
-                      "name": userName.text,
-                      "level": [
-                        {
-                          "level": 1,
-                          "pass": false,
-                        },
-                        {
-                          "level": 2,
-                          "pass": false,
-                        },
-                        {
-                          "level": 3,
-                          "pass": false,
-                        },
-                        {
-                          "level": 4,
-                          "pass": false,
-                        }
-                      ],
-                    };
-                    final String profileJson = jsonEncode(profile);
-                    prefs.setString('profile', profileJson);
+                    if (validateUsername(userName.text) == null) {
+                      //map แล้วแทนค่าใส่ใน profile
+                      final Map<String, dynamic> profile = {
+                        "name": userName.text,
+                        "level": [
+                          {
+                            "level": 1,
+                            "pass": false,
+                          },
+                          {
+                            "level": 2,
+                            "pass": false,
+                          },
+                          {
+                            "level": 3,
+                            "pass": false,
+                          },
+                          {
+                            "level": 4,
+                            "pass": false,
+                          }
+                        ],
+                      };
+                      final String profileJson = jsonEncode(profile);
+                      prefs.setString('profile', profileJson);
 
-                    //get profile from shared preferences
-                    final String? profileJsonFromPrefs =
-                        prefs.getString('profile');
-                    if (profileJsonFromPrefs != null) {
-                      final Map<String, dynamic> storedProfile =
-                          jsonDecode(profileJsonFromPrefs);
-                      print(storedProfile);
-                    } else {
-                      print("Profile not found in shared preferences.");
+                      //get profile from shared preferences
+                      final String? profileJsonFromPrefs =
+                          prefs.getString('profile');
+                      if (profileJsonFromPrefs != null) {
+                        final Map<String, dynamic> storedProfile =
+                            jsonDecode(profileJsonFromPrefs);
+                        print(storedProfile);
+                      } else {
+                        print("Profile not found in shared preferences.");
+                      }
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => LevelGame()),
+                      );
                     }
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => LevelGame()),
-                    );
                   },
-                  child: Text('Login'),
+                  child: Text('Login',
+                      style: TextStyle(fontSize: 15, color: Colors.grey)),
                 ),
               ],
             ),

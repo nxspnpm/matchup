@@ -145,7 +145,7 @@ class _LevelGameState extends State<LevelGame> {
                                                 .toString() ==
                                             'true'
                                         ? 'Level Pass'
-                                        : 'Level : + ${index + 1}',
+                                        : 'Level : ${index + 1}',
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 24,

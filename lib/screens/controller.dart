@@ -150,10 +150,7 @@ class Controller extends GetxController {
           board.where((element) => element.isNotEmpty).toList();
       if (checkBordCardOpen.length == board.length) {
         return true;
-
-        // print(board.length);
-        // print(board);
-        // print(board.where((element) => element.isNotEmpty).toList().length);
+        
       } else {
         return false;
       }
