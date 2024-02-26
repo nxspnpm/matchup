@@ -54,7 +54,7 @@ class _HardState extends State<Hard> {
     return Scaffold(
         appBar: AppBar(
           title: Text(
-            'Level :  1',
+            'Level :  3',
             style: TextStyle(color: Colors.white),
           ),
           leading: IconButton(

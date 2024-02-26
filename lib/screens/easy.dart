@@ -55,7 +55,7 @@ class _EasyLavelState extends State<EasyLavel> {
     return Scaffold(
         appBar: AppBar(
           title: Text(
-            'Level :  3',
+            'Level :  1',
             style: TextStyle(color: Colors.white),
           ),
           leading: IconButton(
@@ -389,8 +389,7 @@ class _EasyLavelState extends State<EasyLavel> {
   void showCustomDialog() {
     showDialog(
       context: context,
-                                    barrierDismissible: false,
-
+      barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
             title: Center(
