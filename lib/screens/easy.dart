@@ -235,13 +235,13 @@ class _EasyLavelState extends State<EasyLavel> {
                                                 TextButton(
                                                   onPressed: () {
                                                     controller.initializeGame();
-                                                    Navigator.push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                const LevelGame()));
-                                                    //Navigator.of(context).pop();
-                                                    //Navigator.of(context).pop();
+                                                    // Navigator.push(
+                                                    //     context,
+                                                    //     MaterialPageRoute(
+                                                    //         builder: (context) =>
+                                                    //             const LevelGame()));
+                                                    Navigator.of(context).pop();
+                                                    Navigator.of(context).pop();
                                                     // Navigator.push(
                                                     //   context,
                                                     //   MaterialPageRoute(

@@ -215,16 +215,18 @@ class _HardState extends State<Hard> {
                                                 ),
                                                 TextButton(
                                                   onPressed: () {
-                                                    // Navigator.of(context).pop();
-                                                    // Navigator.of(context).pop();
+                                                    controller.initializeGame();
+
+                                                    Navigator.of(context).pop();
+                                                    Navigator.of(context).pop();
 
                                                     // onPressed: () {
-                                                    Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              LevelGame()),
-                                                    );
+                                                    // Navigator.push(
+                                                    //   context,
+                                                    //   MaterialPageRoute(
+                                                    //       builder: (context) =>
+                                                    //           LevelGame()),
+                                                    // );
                                                     // },
 
                                                     final String?

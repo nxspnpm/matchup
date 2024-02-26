@@ -215,6 +215,9 @@ class _NormalState extends State<Normal> {
                                                 ),
                                                 TextButton(
                                                   onPressed: () {
+                                                    controller
+                                                        .initializeGameNormal();
+
                                                     Navigator.of(context).pop();
                                                     Navigator.of(context).pop();
 
